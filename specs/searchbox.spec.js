@@ -1,11 +1,10 @@
 let steps = require('../steps/steps');
-let order = require('../model/order').order;
+let Order = require('../model/order');
 
-
-
-describe('Main searchbox', function () {
+describe('Search using main SearchBox', function () {
     it('search tickets on specified destination', function () {
 
+        let order = new Order();
         order.destination = 'New York';
         order.checkin = {
             month: "December 2017",
@@ -16,12 +15,14 @@ describe('Main searchbox', function () {
             day: 15
         };
 
+
         steps.searchBox.onPage()
             .selectDestination(order.destination)
             .selectCheckinDate(order.checkin)
             .selectCheckoutDate(order.checkout)
             .submit()
-            .shouldNavigateTo('searchresults.page');
+
+            .fromPage().shouldNavigateTo('searchresults.page');
 
         let addresses = steps.searchResult.getAddressList();
         let wrong_address = addresses.filter(x => !x.match(order.destination));
