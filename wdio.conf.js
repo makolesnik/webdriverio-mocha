@@ -126,7 +126,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 99999999
+        timeout: 99999999,
+        compilers: ['js:babel-register']
     },
     //
     // =====
@@ -150,8 +151,8 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // beforeSession: function (config, capabilities, specs) {
-    // },
+    beforeSession: function () {
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -161,6 +162,10 @@ exports.config = {
     // before: function (capabilities, specs) {
     // },
     //
+    before: function() {
+        require('babel-register');
+    }
+
     /**
      * Hook that gets executed before the suite starts
      * @param {Object} suite suite details

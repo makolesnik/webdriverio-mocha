@@ -1,6 +1,6 @@
 let page = require('./main.page');
 
-let searchbox = Object.create(page, {
+let searchBox = Object.create(page, {
 
     destination: {
         get: function () {
@@ -59,4 +59,4 @@ let searchbox = Object.create(page, {
 
 });
 
-module.exports = searchbox;
+module.exports = searchBox;

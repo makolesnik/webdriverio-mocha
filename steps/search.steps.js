@@ -1,6 +1,6 @@
 let searchBox = require('../pages/searchbox.page');
 
-let searchSteps = Object.create(searchBox, {
+let searchBoxSteps = Object.create(searchBox, {
     submit: {
         value: function () {
             this.submitButton.click();
@@ -64,5 +64,5 @@ let searchSteps = Object.create(searchBox, {
 
 });
 
-module.exports = searchSteps;
+module.exports = searchBoxSteps;
 

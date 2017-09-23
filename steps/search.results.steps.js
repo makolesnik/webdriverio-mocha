@@ -1,6 +1,6 @@
-let searchresults = require('../pages/searchresults.page');
+let searchResults = require('../pages/searchresults.page');
 
-let steps = Object.create(searchresults, {
+let searchResultsSteps = Object.create(searchResults, {
     getAddressList: {
         value: function () {
             return this.addresses.map(x => x.getText());
@@ -8,5 +8,5 @@ let steps = Object.create(searchresults, {
     }
 });
 
-module.exports = steps;
+module.exports = searchResultsSteps;
 
