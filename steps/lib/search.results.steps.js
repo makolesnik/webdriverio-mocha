@@ -1,9 +1,9 @@
-let SearchResultsPage = require('../../pages/searchresults.page');
+let CommonSteps = require('./common.steps');
 
-class SearchResultsSteps {
-    constructor(){};
 
-    static getAddressList() { return SearchResultsPage.addresses.map(x => x.getText()); }
+class SearchResultsSteps extends CommonSteps {
+
+    getAddressList() { return this.page.addresses.map(x => x.getText()); }
 }
 
 module.exports = SearchResultsSteps;

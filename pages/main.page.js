@@ -5,6 +5,10 @@ class MainPage extends Page {
         return '/'
     }
 
+    static scrollDown() {
+        let size = browser.getViewportSize();
+        return browser.scroll(0, size.height);
+    }
 }
 
 module.exports = MainPage;
