@@ -1,21 +1,14 @@
-let page = require('./page');
+let Page = require('./page');
 
-
-let mainPage = Object.create(page, {
-
-    urlPattern: {
-        get: function () {
-            return '/'
-        }
-    },
-
-    onPage: {
-        value: function () {
-            page.onPage.call(this, '/');
-            return this;
-        }
+class MainPage extends Page {
+    static get urlPattern() {
+        return '/'
     }
 
-});
+    static scrollDown() {
+        let size = browser.getViewportSize();
+        return browser.scroll(0, size.height);
+    }
+}
 
-module.exports = mainPage;
+module.exports = MainPage;

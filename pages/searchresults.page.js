@@ -1,17 +1,13 @@
-let page = require('./main.page');
+let MainPage = require('./main.page');
 
-let searchResultsPage = Object.create(page, {
-    urlPattern: {
-        get: function () {
-            return '/searchresults.html'
-        }
-    },
+class SearchResultsPage extends MainPage {
+    static get urlPattern() {
+        return '/searchresults.html'
+    }
 
-    addresses: {
-        get: function () {
-            return $$('.address');
-        }
-    },
+    static get addresses() {
+        return $$('.address');
+    }
+}
 
-});
-module.exports = searchResultsPage;
+module.exports = SearchResultsPage;
