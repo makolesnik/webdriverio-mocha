@@ -7,6 +7,7 @@ class SearchBoxFloat extends SearchBox {
     }
 
     static get optionsList() {
+        browser.waitForVisible('ul li[role="option"]', 3000);
         return $$('ul li[role="option"]');
     }
 
@@ -18,10 +19,11 @@ class SearchBoxFloat extends SearchBox {
         return $$('button[class*="searchbox__button"][type="submit"]')[1];
     }
 
-    static waitMenu() {
-        browser.waitForVisible('ul li[role="option"]', 3000);
+    static months(date) {
+        browser.waitForVisible('[class*="calendar-header"]');
+        return $$(`//th[contains(text(),"${date.month}")]`)
+            .filter(x => x.isVisible());
     }
-
 }
 
 module.exports = SearchBoxFloat;

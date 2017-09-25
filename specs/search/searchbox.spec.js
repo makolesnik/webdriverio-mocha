@@ -22,7 +22,7 @@ describe('Search using main SearchBox', function () {
             .selectCheckinDate(order.checkin)
             .selectCheckoutDate(order.checkout)
             .submit()
-            .fromPage().shouldNavigateTo('searchresults.page');
+            .fromPage().shouldNavigateTo('search-results.page');
 
         let addresses = steps.searchResult.getAddressList();
         let wrong_address = addresses.filter(x => !x.match(order.destination));

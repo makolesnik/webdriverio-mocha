@@ -19,13 +19,12 @@ class SearchBoxSteps extends CommonSteps {
 
     selectDestination(text, index = 0) {
         this.page.destination.setValue(text);
-        this.page.waitMenu();
         this.page.optionsList[index].click();
         return this;
     }
 
     selectDate(date) {
-        this.selectMonth(date.month);
+        this.selectMonth(date);
         this.selectDay(date);
         return this;
     }
@@ -33,10 +32,8 @@ class SearchBoxSteps extends CommonSteps {
 
     selectCheckinDate(date) {
         this.selectDate(date);
-
         return this;
     }
-
 
     selectCheckoutDate(date) {
         this.page.checkoutfield.click();
@@ -45,25 +42,23 @@ class SearchBoxSteps extends CommonSteps {
     }
 
     selectDay(date) {
-        this.page.monthDays(date.month).filter(x => x.getText() === date.day.toString())[0].click();
+
+        this.page.monthDays(date).filter(x => x.getText() === date.day.toString())[0].click();
         return this;
     }
 
-
-    selectMonth(text) {
-        let months = this.page.monthNames.map(m => m.getText()).filter(m => m !== '');
-
-        let leftMonth = months[0];
-        let rightMonth = months[1];
-        if (leftMonth === text || rightMonth === text) {
+    findMonth(date) {
+        let month = this.page.months(date).filter(x => x.getText().match(date.month));
+        if (month[0]) {
             return this;
         } else {
-
             this.page.nextMonth.click();
-
-            this.selectMonth(text);
-
+            this.findMonth(date);
         }
+    }
+
+    selectMonth(date) {
+        this.findMonth(date);
         return this;
     }
 
