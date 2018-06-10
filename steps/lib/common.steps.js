@@ -1,15 +1,12 @@
-
 class CommonSteps {
+	constructor (page) {
+		this.page = page;
+	}
 
-    constructor(page){
-        this.page = page;
-    };
-
-    scrollDown() {
-        this.page.scrollDown();
-        return this;
-    }
+	scrollDown () {
+		this.page.scrollDown();
+		return this;
+	}
 }
 
 module.exports = CommonSteps;
-
