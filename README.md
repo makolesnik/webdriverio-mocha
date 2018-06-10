@@ -5,10 +5,10 @@
 
 Sample test framework skeleton with webdriverio and mocha (js).
 
-### Run tests:
-`npm test`
+#### Run tests:
+`npm run test` or `yarn test`
 
-### Specifying browser and other parameters:
+#### Specifying browser and other parameters:
 `wdio.conf.js`
 
 
