@@ -2,7 +2,7 @@ const MainPage = require("./main.page");
 
 class SearchResultsPage extends MainPage {
 	static get urlPattern () {
-		return "/searchresults.html";
+		return "/searchresults";
 	}
 
 	static get addresses () {

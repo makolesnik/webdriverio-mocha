@@ -29,13 +29,14 @@ class SearchBoxSteps extends CommonSteps {
 
 	selectCheckinDate (date) {
 		this.page.checkinfield.click();
-		this.page.checkinfield.click(); // it's a magic calendar
+		if (!this.page.nextMonth) this.page.checkinfield.click();
 		this.selectDate(date);
 		return this;
 	}
 
 	selectCheckoutDate (date) {
 		this.page.checkoutfield.click();
+		if (!this.page.nextMonth) this.page.checkoutfield.click();
 		this.selectDate(date);
 		return this;
 	}
@@ -47,10 +48,11 @@ class SearchBoxSteps extends CommonSteps {
 
 	findMonth (date) {
 		const month = this.page.months(date).filter(x => x.getText().match(date.month));
-		if (month[0] || !this.page.nextMonth) {
+		const button = this.page.nextMonth;
+		if (month[0] || !button) {
 			return this;
 		} else {
-			this.page.nextMonth.click();
+			button.click();
 			this.findMonth(date);
 		}
 	}

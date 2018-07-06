@@ -11,10 +11,14 @@ class SearchBox extends MainPage {
 	}
 
 	static get checkinfield () {
+		browser.waitForVisible("[data-mode='checkin'] > div");
+		browser.waitForEnabled("[data-mode='checkin'] > div");
 		return $("[data-mode='checkin'] > div");
 	}
 
 	static get checkoutfield () {
+		browser.waitForVisible("[data-mode='checkout'] > div");
+		browser.waitForEnabled("[data-mode='checkout'] > div");
 		return $("[data-mode='checkout'] > div");
 	}
 
@@ -23,8 +27,12 @@ class SearchBox extends MainPage {
 	}
 
 	static get nextMonth () {
-		browser.waitForVisible("[class*='button-further']");
-		return $$("[class*='button-further']").filter(x => x.isVisible())[0];
+		let buttons = [];
+		browser.waitUntil(() => {
+			buttons = $$("[class*='button-further']").filter(x => x.isEnabled() && x.isVisible());
+			return buttons.length <= 1;
+		}, "expected conditions not met");
+		return buttons[0];
 	}
 
 	static months (date) {
